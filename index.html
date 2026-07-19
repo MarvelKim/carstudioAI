@@ -511,7 +511,7 @@
             <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h8l-1 8 10-12h-8l1-8Z"/></svg>
             <span>AI로 더 멋지게 만들기</span>
           </button>
-          <a class="mini-game" id="miniGameButton" href="game.html" target="_blank" rel="noopener" aria-disabled="true">이 자동차로 미니게임하기</a>
+          <a class="mini-game" id="miniGameButton" href="game.html" target="_blank" rel="noopener" aria-disabled="true">이 자동차로 미니게임 하기(베타)</a>
           <div class="meta">
             <div><strong>이름</strong><span id="seedText">-</span></div>
             <div><strong>성별</strong><span id="genderText">-</span></div>
@@ -545,7 +545,7 @@
     const historyList = document.getElementById("historyList");
     const themeSelect = document.getElementById("themeSelect");
     const miniGameButton = document.getElementById("miniGameButton");
-    const gameButtonLabels = { ko: "이 자동차로 미니게임하기", en: "Play a mini-game with this car", ja: "この車でミニゲームをする", zh: "用这辆车玩小游戏" };
+    const gameButtonLabels = { ko: "이 자동차로 미니게임 하기(베타)", en: "Play a mini-game with this car (Beta)", ja: "この車でミニゲームをする（ベータ）", zh: "用这辆车玩小游戏（测试版）" };
     const storageKey = "carstudioRecentSeeds";
     const themeStorageKey = "carstudioTheme";
     let currentPick = null;
@@ -659,7 +659,9 @@
       if (aiLoadingTimer) clearTimeout(aiLoadingTimer);
       aiLoadingTimer = setTimeout(() => {
         carImage.alt = `${car.name} AI enhanced image`;
-        carImage.src = getAiImageUrl(car, index);
+        const enhancedImage = getAiImageUrl(car, index);
+        carImage.src = enhancedImage;
+        localStorage.setItem("carstudioGameCar", JSON.stringify({ name: car.name, image: enhancedImage, index }));
         setAiLoading(false);
         aiLoadingTimer = null;
       }, aiLoadingMs);
