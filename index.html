@@ -629,7 +629,7 @@
       const profileSeed = [gender, birthYear, trimmed].join("|");
       const { car, index } = pickCar(profileSeed);
       currentPick = { car, index };
-      localStorage.setItem("carstudioGameCar", JSON.stringify({ name: car.name, image: car.image, index }));
+      localStorage.setItem("carstudioGameCar", JSON.stringify({ name: car.name, image: getAiImageUrl(car, index), fallbackImage: car.image, index }));
       miniGameButton.setAttribute("aria-disabled", "false");
       if (aiLoadingTimer) {
         clearTimeout(aiLoadingTimer);
@@ -661,7 +661,7 @@
         carImage.alt = `${car.name} AI enhanced image`;
         const enhancedImage = getAiImageUrl(car, index);
         carImage.src = enhancedImage;
-        localStorage.setItem("carstudioGameCar", JSON.stringify({ name: car.name, image: enhancedImage, index }));
+        localStorage.setItem("carstudioGameCar", JSON.stringify({ name: car.name, image: enhancedImage, fallbackImage: car.image, index }));
         setAiLoading(false);
         aiLoadingTimer = null;
       }, aiLoadingMs);
