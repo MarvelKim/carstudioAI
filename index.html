@@ -511,7 +511,7 @@
             <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h8l-1 8 10-12h-8l1-8Z"/></svg>
             <span>AI로 더 멋지게 만들기</span>
           </button>
-          <a class="mini-game" id="miniGameButton" href="game.html" target="_blank" rel="noopener" aria-disabled="true">이 자동차로 미니게임 하기(베타)</a>
+          <a class="mini-game" id="miniGameButton" href="game.html?v=20260719-3" target="_blank" rel="noopener" aria-disabled="true">이 자동차로 미니게임 하기(베타)</a>
           <div class="meta">
             <div><strong>이름</strong><span id="seedText">-</span></div>
             <div><strong>성별</strong><span id="genderText">-</span></div>
@@ -629,7 +629,7 @@
       const profileSeed = [gender, birthYear, trimmed].join("|");
       const { car, index } = pickCar(profileSeed);
       currentPick = { car, index };
-      localStorage.setItem("carstudioGameCar", JSON.stringify({ name: car.name, image: getAiImageUrl(car, index), fallbackImage: car.image, index }));
+      localStorage.setItem("carstudioGameCar", JSON.stringify({ name: car.name, image: car.image, fallbackImage: getAiImageUrl(car, index), index }));
       miniGameButton.setAttribute("aria-disabled", "false");
       if (aiLoadingTimer) {
         clearTimeout(aiLoadingTimer);
